@@ -1,3 +1,4 @@
+// Triggering a clean deploy: no unused 'error' variable present.
 'use client';
 
 import React, { useState, useCallback } from 'react';
