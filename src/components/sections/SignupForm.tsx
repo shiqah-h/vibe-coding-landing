@@ -30,7 +30,6 @@ export default function SignupForm() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
     reset,
     watch,
     setValue,
