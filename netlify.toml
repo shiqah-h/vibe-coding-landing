@@ -1,7 +1,6 @@
 [build]
   command = "npm run build && npm run export"
   publish = "out"
-  environment = { NEXT_PUBLIC_SUPABASE_URL = "https://pfrzliqdeiwyktuoxxvi.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmcnpsaXFkZWl3eWt0dW94eHZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5Nzk5NTgsImV4cCI6MjA2ODU1NTk1OH0.ucD2ct6wKgps4naMxuHwXjPC1BWdtHhp1eInVf_7yhc" }
 
 [[redirects]]
   from = "/api/*"
