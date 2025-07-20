@@ -31,8 +31,8 @@ export async function submitSignup(data: SignupData): Promise<ApiResponse<VibeCo
     }
 
     return { success: true, data: result.data };
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Network error' };
+  } catch (err: unknown) {
+    return { success: false, error: (err as Error).message || 'Network error' };
   }
 }
 
@@ -55,7 +55,7 @@ export async function getSignupCount(): Promise<ApiResponse<number>> {
     }
 
     return { success: true, data: result.data || 0 };
-  } catch (err: any) {
-    return { success: false, error: err.message || 'Network error' };
+  } catch (err: unknown) {
+    return { success: false, error: (err as Error).message || 'Network error' };
   }
 } 

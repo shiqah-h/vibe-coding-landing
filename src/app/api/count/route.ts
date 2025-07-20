@@ -2,24 +2,20 @@ import { NextResponse } from 'next/server';
 import { supabase } from '../../../lib/supabase';
 
 // Simple in-memory cache (in production, use Redis or similar)
-let cache = {
-  count: null as number | null,
-  timestamp: 0,
-  ttl: 5 * 60 * 1000, // 5 minutes
-};
+const cache = new Map<string, number>();
 
 export async function GET() {
   try {
     const now = Date.now();
     
     // Check cache first
-    if (cache.count !== null && (now - cache.timestamp) < cache.ttl) {
+    if (cache.has('count') && (now - cache.get('timestamp')!) < cache.get('ttl')!) {
       return NextResponse.json(
         { 
           success: true, 
-          data: cache.count,
+          data: cache.get('count'),
           cached: true,
-          timestamp: cache.timestamp 
+          timestamp: cache.get('timestamp') 
         },
         { status: 200 }
       );
@@ -34,14 +30,14 @@ export async function GET() {
       console.error('Database count error:', error);
       
       // Return cached value if available, otherwise error
-      if (cache.count !== null) {
+      if (cache.has('count')) {
         return NextResponse.json(
           { 
             success: true, 
-            data: cache.count,
+            data: cache.get('count'),
             cached: true,
             error: 'Using cached data due to database error',
-            timestamp: cache.timestamp 
+            timestamp: cache.get('timestamp') 
           },
           { status: 200 }
         );
@@ -55,8 +51,9 @@ export async function GET() {
 
     // Update cache
     const actualCount = count || 0;
-    cache.count = actualCount;
-    cache.timestamp = now;
+    cache.set('count', actualCount);
+    cache.set('timestamp', now);
+    cache.set('ttl', 5 * 60 * 1000); // 5 minutes
 
     // Return fresh data
     return NextResponse.json(
@@ -73,14 +70,14 @@ export async function GET() {
     console.error('Count API error:', error);
     
     // Return cached value if available, otherwise error
-    if (cache.count !== null) {
+    if (cache.has('count')) {
       return NextResponse.json(
         { 
           success: true, 
-          data: cache.count,
+          data: cache.get('count'),
           cached: true,
           error: 'Using cached data due to server error',
-          timestamp: cache.timestamp 
+          timestamp: cache.get('timestamp') 
         },
         { status: 200 }
       );
