@@ -27,7 +27,6 @@ export default function SignupCounter({
     data: count,
     isLoading,
     isError,
-    error,
     refetch
   } = useQuery({
     queryKey: ['signupCount'],

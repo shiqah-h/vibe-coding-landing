@@ -4,7 +4,6 @@ import React, { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { submitSignup } from '../../lib/api';
 import { validateName, validateEmail, sanitizeFormData } from '../../lib/validation';
-import { SignupData } from '../../types';
 
 // UI Components
 import Input from '../ui/Input';
@@ -12,7 +11,6 @@ import Button from '../ui/Button';
 import Checkbox from '../ui/Checkbox';
 import Form from '../ui/Form';
 import LoadingSpinner from '../ui/LoadingSpinner';
-import ErrorMessage from '../ui/ErrorMessage';
 import SuccessMessage from '../ui/SuccessMessage';
 
 type FormState = 'idle' | 'validating' | 'submitting' | 'success' | 'error';

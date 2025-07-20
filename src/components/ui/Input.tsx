@@ -26,8 +26,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     
     const inputClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
     
-    const inputVariant = error ? 'error' : variant;
-    
     return (
       <div className="w-full">
         {label && (

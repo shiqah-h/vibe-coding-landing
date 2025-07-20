@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '../../../lib/supabase';
 import { validateFormData, sanitizeFormData } from '../../../lib/validation';
-import { SignupData } from '../../../types';
 
 export async function POST(request: NextRequest) {
   try {
