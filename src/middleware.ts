@@ -29,7 +29,6 @@ export function middleware(request: NextRequest) {
   }
 
   // Basic rate limiting (simple implementation)
-  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
   
   // In production, use Redis or similar for rate limiting
   // For now, we'll just pass through
